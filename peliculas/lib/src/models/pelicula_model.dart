@@ -1,5 +1,5 @@
 class Peliculas{
-  List<Pelicula> items = new List<dynamic>();
+  List<Pelicula> items = new List<Pelicula>();
 
   Peliculas();
 
@@ -10,11 +10,7 @@ class Peliculas{
     for (var item in jsonList) {
       final pelicula = new Pelicula.fromJsonMap(item);
       this.items.add(pelicula);
-    }
-
-    
-    
-      
+    }   
   }
 
 }
@@ -69,6 +65,16 @@ class Pelicula {
       releaseDate   = json["release_date"];
       backdropPath  =json["backdrop_path"];
       originalLanguage  = json["original_language"];
+  }
+
+
+  getPosterImg(){
+    if (posterPath==null){
+      return "https://i1.wp.com/autohub.de/wp-content/uploads/2019/08/placeholder.png?fit=1200%2C800&ssl=1";
+    }
+    else{
+    return "https://image.tmdb.org/t/p/w500/$posterPath";
+    }
   }
 }
 
