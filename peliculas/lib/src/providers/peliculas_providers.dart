@@ -42,7 +42,7 @@ class PeliculasProviders{
 
       final url = Uri.https(_url, "3/movie/now_playing",{
           "api_key":_apikey,
-          "lenguage":_lenguage,
+          "language":_lenguage,
       });
 
       return await _procesarRespuesta(url);
@@ -55,7 +55,7 @@ class PeliculasProviders{
     _popularesPage++;
     final url = Uri.https(_url, "3/movie/popular",{
       "api_key":_apikey,
-      "lenguage": _lenguage,
+      "language": _lenguage,
       "page":    _popularesPage.toString()
     });
 
@@ -78,6 +78,18 @@ class PeliculasProviders{
     final cas = new Cast.fromJsonList(decode["cast"]);
     return cas.actorers; 
 
+  }
+
+
+  Future<List<Pelicula>> buscarPelicula(String pelicula) async{
+
+      final url = Uri.https(_url, "3/search/movie",{
+          "api_key":_apikey,
+          "language":_lenguage,
+          "query"   :pelicula
+      });
+
+      return await _procesarRespuesta(url);
   }
   
 }
