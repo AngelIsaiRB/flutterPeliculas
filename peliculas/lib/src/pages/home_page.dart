@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
          child: Column(
            mainAxisAlignment: MainAxisAlignment.spaceAround,
            children: [
-             _swiperTarjetas(),
+             _swiperTarjetas(context),
              _foother(context),
            ],
          ),
@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _swiperTarjetas() {
+  Widget _swiperTarjetas(BuildContext context) {
 
       return FutureBuilder(
         future: peliculasPrivider.getEnCines(),        

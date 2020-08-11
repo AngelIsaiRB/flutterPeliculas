@@ -20,14 +20,8 @@ class CardSwiper extends StatelessWidget {
       padding: EdgeInsets.only(top:10.0),      
       child: Swiper(
           itemBuilder: (BuildContext context,int index){
-            return ClipRRect(
-              borderRadius: BorderRadius.circular(20.0),
-              child: FadeInImage(
-                image: NetworkImage(peliculas[index].getPosterImg()),
-                placeholder: AssetImage("assets/img/no-image.jpg"),
-                fit: BoxFit.cover,
-              ),
-            );
+            return  _tarjeta(context,index);
+          
           },
           itemCount: peliculas.length,          
           itemWidth: _screenSize.width *0.7,
@@ -36,6 +30,28 @@ class CardSwiper extends StatelessWidget {
          // pagination: new SwiperPagination(),
           //control: new SwiperControl(),
         ),
+    );
+
+
+    
+  }
+
+  Widget _tarjeta(BuildContext context,int index){
+    final tarjetas = ClipRRect(
+              borderRadius: BorderRadius.circular(20.0),
+              child: FadeInImage(
+                image: NetworkImage(peliculas[index].getPosterImg()),
+                placeholder: AssetImage("assets/img/no-image.jpg"),
+                fit: BoxFit.cover,
+              ),
+            );
+
+      return GestureDetector(
+      child: tarjetas,
+      onTap: (){
+        Navigator.pushNamed(context, "detalle",arguments: peliculas[index] );
+
+      },
     );
   }
 }
